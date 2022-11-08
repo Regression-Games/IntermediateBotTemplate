@@ -1,6 +1,6 @@
 const RGBot = require('rg-bot').RGBot;
 
-// This strategy is an intermediate example of how to craft and equip items, and harvest blocks.
+// This strategy is an intermediate example of how to craft and equip items, and harvest blocks with the rg-bot package.
 // The Bot will create a pickaxe and use it to mine the bell in the starting village
 function configureBot(bot) {
 
