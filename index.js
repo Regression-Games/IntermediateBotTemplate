@@ -23,7 +23,9 @@ function configureBot(bot) {
                 // Sometimes the Bot may encounter pathing issues. Since there are two houses with the perfect
                 // conditions for this strategy, the Bot can try to get to the second house if it fails to approach the first one.
                 craftingTable = await bot.findBlock('crafting_table', { skipClosest: true });
-                await bot.approachBlock(craftingTable, {reach: 3});
+                if (craftingTable) {
+                    await bot.approachBlock(craftingTable, {reach: 3});
+                }
             }
         
             // Next, loot some logs from the chest in the same house.
@@ -42,16 +44,20 @@ function configureBot(bot) {
                     }
                 }
             }
+            
+            if (craftingTable) {
+                if (await bot.approachBlock(craftingTable), {reach: 3}) {
+                    // Craft the components the Bot will need for one pickaxe
+                    // Turn the logs into 8 planks, and then two of the planks into some sticks
+                    await bot.craftItem('spruce_planks', { quantity: 2 });
+                    await bot.craftItem('stick');
 
-            // Craft the components the Bot will need for one pickaxe
-            // Turn the logs into 8 planks, and then two of the planks into some sticks
-            await bot.craftItem('spruce_planks', { quantity: 2 });
-            await bot.craftItem('stick');
-
-            // Now the Bot has enough materials to craft a pickaxe
-            await bot.approachBlock(craftingTable);
-            await bot.craftItem('wooden_pickaxe', { craftingTable: craftingTable });
-            await bot.holdItem('wooden_pickaxe');
+                    // Now the Bot has enough materials to craft a pickaxe
+                    await bot.approachBlock(craftingTable);
+                    await bot.craftItem('wooden_pickaxe', { craftingTable: craftingTable });
+                    await bot.holdItem('wooden_pickaxe');
+                }
+            }
         }
 
         // Finally, have the Bot collect the Bell using its new pickaxe
