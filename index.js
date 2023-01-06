@@ -5,8 +5,9 @@ const RGBot = require("rg-bot").RGBot;
  * The Bot will create a pickaxe and use it to mine the bell in the starting village
  *
  * @param {RGBot} bot
+ * @param {EventEmitter} matchInfoEmitter
  */
-function configureBot(bot) {
+function configureBot(bot, matchInfoEmitter) {
 
     bot.setDebug(true);
 
