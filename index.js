@@ -1,3 +1,4 @@
+const RGBot = require("rg-bot").RGBot;
 
 /**
  * This strategy is an intermediate example of how to craft and equip items, and harvest blocks with the rg-bot package.
